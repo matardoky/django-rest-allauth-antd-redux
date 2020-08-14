@@ -11,30 +11,13 @@ class CustomUserCreationForm(UserCreationForm):
 
     class Meta(UserCreationForm.Meta): 
         model = User
-        fields = (
-            'first_name', 
-            'last_name', 
-            'email',
-            'birthday', 
-            'titre', 
-            'phone_number', 
-            'is_staff'
-        )
-
+        fields = ('__all__')
 
 class CustomUserChangeForm(UserChangeForm): 
 
     class Meta(UserChangeForm.Meta): 
         model = User
-        fields = (
-            'first_name', 
-            'last_name', 
-            'password', 
-            'birthday',
-            'titre', 
-            'phone_number', 
-            'is_staff'
-        )
+        fields = ('__all__')
   
 
 class UserAdmin(BaseUserAdmin): 
@@ -57,7 +40,7 @@ class UserAdmin(BaseUserAdmin):
             )
         }),
 
-        ("Dates auth", {
+        ("Connexion", {
             "fields":("last_login", "date_joined")
         })
 
@@ -67,7 +50,16 @@ class UserAdmin(BaseUserAdmin):
         (
             None, {
                 "classes":("wide",),
-                "fields":("first_name", "last_name", "email","phone_number","password1", "password2"),
+                "fields":(
+                    "first_name", 
+                    "last_name", 
+                    "birthday",
+                    "email",
+                    "phone_number",
+                    "password1", 
+                    "password2",
+                    "is_staff",
+                ),
             },
         ),
     )
