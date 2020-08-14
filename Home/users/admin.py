@@ -24,7 +24,7 @@ class CustomUserCreationForm(UserCreationForm):
 
 class CustomUserChangeForm(UserChangeForm): 
 
-    class Meta(UserChangeForm): 
+    class Meta(UserChangeForm.Meta): 
         model = User
         fields = (
             'first_name', 
@@ -43,7 +43,7 @@ class UserAdmin(BaseUserAdmin):
             "fields":("email", "password")
         }),
 
-        ("Information Personnelle", {
+        ("Informations personnelles", {
             "fields":("first_name", "last_name", "birthday", "phone_number")
         }),
 
@@ -57,7 +57,7 @@ class UserAdmin(BaseUserAdmin):
             )
         }),
 
-        ("Important dates", {
+        ("Dates auth", {
             "fields":("last_login", "date_joined")
         })
 
