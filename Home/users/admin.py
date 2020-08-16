@@ -68,7 +68,6 @@ class UserAdmin(BaseUserAdmin):
     ordering = ("email",)
     search_fields=("email","first_name", "last_name")
 
-
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
     model = User
