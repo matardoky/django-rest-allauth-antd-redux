@@ -54,7 +54,7 @@ class TokenSerializer(serializers.ModelSerializer):
         is_staff = serializer_data.get('is_staff')
         
         return {
-            'first-name' : first_name, 
+            'first_name' : first_name, 
             'last_name' : last_name,
             'is_staff' : is_staff
         }

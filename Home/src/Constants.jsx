@@ -1,4 +1,4 @@
-const ROOT_URL = "http://localhost:8000/";
+const ROOT_URL = "http://127.0.0.1:8000/";
 
 export const authUrls = {
     LOGIN: `${ROOT_URL}rest-auth/login/`,
