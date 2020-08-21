@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
 import { Router, Switch, Redirect, Route} from 'react-router-dom'
 import LoginForm from './containers/LoginForm'
-import test from './containers/test'
+import Test from './containers/test'
+import { Dashboard } from './components/Dashboard'
+import { LieuConsult } from './components/LieuConsul'
+import { Users } from './components/users'
+
 
 export const PrivateRoute = ({component = Component, ...rest}) => {
     const isAuthenticated = localStorage.getItem("user") !==null
@@ -28,8 +32,11 @@ export const PrivateRoute = ({component = Component, ...rest}) => {
 export const BaseRoute = () => {
     return (
         <Switch>
-            <Route exact path='/login' component={LoginForm}/>
-            <Route exact path='/' component={test}/>
+            <Route exact path = '/login' component={LoginForm}/>
+            <Route exact path = '/home' component={Test} />
+            <Route exact path = '/dashboard'component ={Dashboard}/>
+            <Route exact path = '/lieu-de-consultation' component ={LieuConsult}/>
+            <Route exact path = '/users' component={Users} />
        </Switch>
 
     )
@@ -37,6 +44,3 @@ export const BaseRoute = () => {
 
 }
 
-export const BasePrivateRoute = () => {
-
-}

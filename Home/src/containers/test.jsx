@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
+import CustomLayout from './CustomLayout'
 
-class test extends Component {
+class Test extends Component {
     render() {
         return (
-            <div>
-                <h1>Hello</h1>
-            </div>
+            <CustomLayout>
+                <p>Info</p>
+            </CustomLayout>
         );
     }
 }
 
-export default test;
+export default Test;

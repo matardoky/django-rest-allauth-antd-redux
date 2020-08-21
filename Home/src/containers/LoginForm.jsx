@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect, Link} from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { Form, Input, Button, Row, Col, Spin} from 'antd';
@@ -15,7 +16,7 @@ class LoginForm extends React.Component {
   render(){
     const { isAuthenticated, loading, error } = this.props
     if(isAuthenticated){
-      return <Redirect to ="/"/>
+      return <Redirect to ="/home"/>
     }
 
     return(
@@ -89,4 +90,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)
 
 
 
-
+LoginForm.propTypes = {
+  isAuthenticated: PropTypes.bool,
+  loading: PropTypes.bool, 
+  error: PropTypes.string, 
+  onAuth: PropTypes.func
+}

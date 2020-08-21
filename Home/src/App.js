@@ -1,8 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 import { checkAuthState } from './store/actions/auth';
 import { connect } from 'react-redux';
 import {BrowserRouter as Router} from 'react-router-dom'
 import { BaseRoute } from './Routers';
+
 
 class App extends React.Component {
   componentDidMount(){
@@ -12,7 +14,9 @@ class App extends React.Component {
   render(){
     return (
       <Router>
-        <BaseRoute/>
+        
+          <BaseRoute/>
+        
       </Router>
     )
   }
@@ -24,4 +28,14 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(App)
+const mapStateToProps = (state) => {
+  return {
+    isAuthenticated: state.auth.token !== null
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
+
+App.propTypes = {
+  onTryAutoSignup: PropTypes.func
+}
