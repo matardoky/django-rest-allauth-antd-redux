@@ -16,7 +16,7 @@ class LoginForm extends React.Component {
   render(){
     const { isAuthenticated, loading, error } = this.props
     if(isAuthenticated){
-      return <Redirect to ="/home"/>
+      return <Redirect to ='/dashboard'/>
     }
 
     return(

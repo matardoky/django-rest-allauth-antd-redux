@@ -38,11 +38,22 @@ const authFail = (state, action) => {
     })
 }
 
+const authLogout = (state, action) => {
+    return UpdateObject(state, {
+        token: null, 
+        userId:null,
+        isAdmin:false, 
+        first_name:null,
+        last_name:null, 
+        expirationDate:null
+    })
+}
 export const authReducer = (state = initialState, action) => {
     switch(action.type) {
         case authType.AUTH_START: return authStart(state, action)
         case authType.AUTH_SUCCESS: return authSuccess(state, action)
         case authType.AUTH_FAIL: return authFail(state, action)
+        case authType.AUTH_LOGOUT: return authLogout(state, action)
         default: return state
     }
 }

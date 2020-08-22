@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import DocumentTitle from 'react-document-title'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
+import { authLogout } from '../store/actions/auth';
+
 
 const { Header, Content } = Layout
 const { SubMenu } = Menu;
@@ -11,7 +13,7 @@ const { SubMenu } = Menu;
 class CustomLayout extends React.Component {
     
     render() {
-        const { isAdmin, first_name, last_name} = this.props
+        const { isAdmin, first_name, last_name, onLogout} = this.props
         return ( 
             <Layout className="layout">
                 <Header>
@@ -28,7 +30,10 @@ class CustomLayout extends React.Component {
                         }
                         <Menu.Item key="1">Patient</Menu.Item>
                         <Menu.Item key="2">Profil DokyDoc</Menu.Item>
-                        <Menu.Item key="3">Déconnexion</Menu.Item>
+                        
+                        <Menu.Item key="3"> <span onClick={()=>onLogout()}> Déconnexion </span> </Menu.Item>
+
+                        
                     </SubMenu>
 
                     </Menu>
@@ -53,7 +58,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-
+        onLogout: () => dispatch(authLogout())
     }
 }
 
@@ -62,5 +67,7 @@ export default connect(mapStateToProps, mapDispatchToProps )(CustomLayout);
 CustomLayout.propTypes = {
     first_name: PropTypes.string,
     last_name: PropTypes.string, 
-    isAdmin: PropTypes.bool
+    isAdmin: PropTypes.bool, 
+    onLogout: PropTypes.func 
+
 }

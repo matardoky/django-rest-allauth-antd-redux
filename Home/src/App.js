@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types'
 import { checkAuthState } from './store/actions/auth';
 import { connect } from 'react-redux';
-import {BrowserRouter as Router} from 'react-router-dom'
+import {BrowserRouter} from 'react-router-dom'
 import { BaseRoute } from './Routers';
 
 
@@ -13,11 +13,9 @@ class App extends React.Component {
   }
   render(){
     return (
-      <Router>
-        
+      <BrowserRouter>
           <BaseRoute/>
-        
-      </Router>
+      </BrowserRouter>
     )
   }
 }

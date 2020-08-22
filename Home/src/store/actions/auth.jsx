@@ -53,7 +53,7 @@ const authFail = (error) => {
     }
 }
 
-const authLogout = () => {
+export const authLogout = () => {
     localStorage.removeItem("user")
     return {
         type:authType.AUTH_LOGOUT

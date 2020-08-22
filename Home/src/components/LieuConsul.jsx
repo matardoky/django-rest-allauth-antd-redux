@@ -1,14 +1,12 @@
 import React from 'react' 
-import CustomLayout from '../containers/CustomLayout'
-import Asider from '../containers/Asider'
 
-export const LieuConsult = () => {
-    return (
-        <CustomLayout>
-            <Asider>
-                <p>Information</p>
-            </Asider>
-            
-        </CustomLayout>  
-    )
+
+class LieuConsult extends React.Component {
+    render(){
+        return ( 
+            <p>Information</p>
+        )
+    }
 }
+
+export default LieuConsult

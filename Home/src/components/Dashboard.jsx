@@ -1,12 +1,11 @@
 import React from 'react' 
 import { Row, Col} from 'antd'
 import {Link} from 'react-router-dom'
-import CustomLayout from '../containers/CustomLayout'
 
 
-export const Dashboard = () => {
-    return (
-        <CustomLayout>        
+class Dashboard extends React.Component {
+    render() {
+        return (
             <React.Fragment>
                 <div className="section-parameters">
                 <Row gutter={[16, 24]} className="row-parameters">
@@ -72,8 +71,10 @@ export const Dashboard = () => {
                 </div>
 
             </React.Fragment>
-        </CustomLayout>
-        
+        )
 
-    )
+    }
+    
 }
+
+export default Dashboard
