@@ -35,20 +35,23 @@ export const BaseRoute = () => {
             <Route exact path= "/" component={LoginForm}/>
             <PrivateRoute>
                 <CustomLayout>
-                    <Asider>
-                        <Switch>
-                            <PrivateRoute exact path="/lieu-de-consultation" component={LieuConsult}/>
-                            <PrivateRoute exact path="/users" component={Users}/>
-                        </Switch>
-                    </Asider>
-                </CustomLayout>
-
-                <CustomLayout>
                     <Switch>
                         <PrivateRoute exact path="/dashboard" component={Dashboard}/>
+                        <Asider>
+                            <Switch>
+                                <PrivateRoute exact path="/lieu-de-consultation" component={LieuConsult}/>
+                                <PrivateRoute exact path="/users" component={Users}/>
+                            </Switch>
+                        </Asider>
+
                     </Switch>
+                    
                 </CustomLayout>
+
             </PrivateRoute>
+
+            
+                
 
        </Switch>
     )
