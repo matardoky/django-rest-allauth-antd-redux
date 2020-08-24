@@ -37,13 +37,19 @@ export const BaseRoute = () => {
                 <CustomLayout>
                     <Asider>
                         <Switch>
-                            <PrivateRoute exact path="/dashboard" component={Dashboard}/>
                             <PrivateRoute exact path="/lieu-de-consultation" component={LieuConsult}/>
                             <PrivateRoute exact path="/users" component={Users}/>
                         </Switch>
                     </Asider>
                 </CustomLayout>
+
+                <CustomLayout>
+                    <Switch>
+                        <PrivateRoute exact path="/dashboard" component={Dashboard}/>
+                    </Switch>
+                </CustomLayout>
             </PrivateRoute>
+
        </Switch>
     )
 }
