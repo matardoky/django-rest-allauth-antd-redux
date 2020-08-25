@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
 
     'corsheaders',
+    'django_filters',
     
 ]
 
@@ -129,6 +130,8 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
     ),
+
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
 }
 
 #RESTAUTH 

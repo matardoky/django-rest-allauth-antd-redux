@@ -9,5 +9,10 @@ class User(AbstractUser):
     def __str__(self): 
         return self.email
 
+class UserAccount(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.user.email
+
 
 
