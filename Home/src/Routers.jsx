@@ -43,16 +43,9 @@ export const BaseRoute = () => {
                                 <PrivateRoute exact path="/users" component={Users}/>
                             </Switch>
                         </Asider>
-
                     </Switch>
-                    
                 </CustomLayout>
-
             </PrivateRoute>
-
-            
-                
-
        </Switch>
     )
 }
