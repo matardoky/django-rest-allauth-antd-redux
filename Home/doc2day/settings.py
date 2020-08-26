@@ -14,6 +14,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     'users.apps.UsersConfig',
+    'apiScheduler.apps.ApischedulerConfig',
     'django.contrib.sites',
     'allauth',
     'allauth.account',

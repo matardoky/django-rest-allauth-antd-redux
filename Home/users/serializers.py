@@ -10,7 +10,6 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('__all__')
 
-
 class CustomRegisterSerializer(RegisterSerializer): 
 
     first_name = serializers.CharField(max_length=50)
