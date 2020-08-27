@@ -30,8 +30,10 @@ class CustomLayout extends React.Component {
                         }
                         <Menu.Item key="1">Patient</Menu.Item>
                         <Menu.Item key="2">Profil DokyDoc</Menu.Item>
-                        
-                        <Menu.Item key="3"> <span onClick={()=>onLogout()}> Déconnexion </span> </Menu.Item>
+                        <Menu.Item key="3">
+                            <Link to ='/compte'> Mon compte</Link>
+                        </Menu.Item>
+                        <Menu.Item key="4"> <span onClick={()=>onLogout()}> Déconnexion </span> </Menu.Item>
 
                         
                     </SubMenu>
