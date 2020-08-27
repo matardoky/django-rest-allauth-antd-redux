@@ -1,16 +1,7 @@
 import { UpdateObject } from "../utility"
 import { authType } from "../actions/actionTypes"
 
-const initialState = {
-    token:null, 
-    userId:null,
-    isAdmin:null,
-    first_name:null,
-    last_name:null,
-    loading:false, 
-    error:null, 
-    expirationDate:null
-}
+const initialState = {}
 
 const authStart = (state, action) => {
     return UpdateObject(state, {
@@ -25,8 +16,8 @@ const authSuccess = (state, action) => {
         isAdmin:action.user.isAdmin,
         first_name:action.user.first_name,
         last_name:action.user.last_name, 
-        loading:false, 
-        expirationDate:action.user.expirationDate
+        expirationDate:action.user.expirationDate,
+        loading:false
     })
 }
 
@@ -48,6 +39,8 @@ const authLogout = (state, action) => {
         expirationDate:null
     })
 }
+
+
 export const authReducer = (state = initialState, action) => {
     switch(action.type) {
         case authType.AUTH_START: return authStart(state, action)

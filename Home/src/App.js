@@ -9,8 +9,8 @@ import { BaseRoute } from './Routers';
 class App extends React.Component {
   componentDidMount(){
     this.props.onTryAutoSignup()
-    console.log('App')
   }
+
   render(){
     return (
       <BrowserRouter>
@@ -35,5 +35,5 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, mapDispatchToProps)(App)
 
 App.propTypes = {
-  onTryAutoSignup: PropTypes.func
+  onTryAutoSignup: PropTypes.func.isRequired
 }

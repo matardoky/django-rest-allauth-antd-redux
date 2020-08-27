@@ -53,6 +53,8 @@ const authFail = (error) => {
     }
 }
 
+
+
 export const authLogout = () => {
     localStorage.removeItem("user")
     return {
@@ -85,3 +87,4 @@ export const authLogin =  (email, password) => {
         })
     }
 }
+
