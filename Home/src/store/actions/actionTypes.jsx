@@ -5,3 +5,9 @@ export const authType = {
     AUTH_LOGOUT:'AUTH_LOGOUT',
     USER_PROFILE:'USER_PROFILE'
 }
+
+export const notifs = {
+    NOTIF_RESET:'NOTIF_RESET', 
+    NOTIF_SUCCESS:'NOTIF_SUCCESS', 
+    NOTIF_FAIL:'NOTIF_FAIL'
+}

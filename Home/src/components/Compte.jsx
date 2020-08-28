@@ -34,7 +34,7 @@ class Compte extends React.Component {
 
     }
     render() {
-        const { first_name, last_name, email, phone_number, birthday, last_login ,} = this.state.user_profil
+        const { first_name, last_name, email, phone_number, birthday, last_login, civilite, titre, bithplace} = this.state.user_profil
         const { loading, error } = this.state
         return(
             <>
