@@ -2,14 +2,119 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { notifReset, passwordChange } from '../store/actions/notifs'
 import { authLogout } from '../store/actions/auth'
-import PropTypes, { func } from 'prop-types'
+import PropTypes from 'prop-types'
+import { PageHeader, Alert, Form, Button, Input, message } from 'antd'
+import { createPortal, findDOMNode } from 'react-dom'
 
 
 class PasswordChange extends React.Component {
+
+    onFinish = (value) => {
+        this.props.onPasswordChange(value.old_password, value.new_password1, value.new_password2)
+    }
     render(){
-        return(
-            <>
-            </>
+        const { messageSuccess, messageFail, notifSendSuccess, notifSendFail} = this.props
+        const description = "Choisissez un mot de passe sécurisé et ne le réutilisez pas pour d'autres comptes. Si vous modifiez ce mot de passe, vous serez déconnecté de tous vos appareils, sauf ceux que vous utilisez pour prouver votre identité lorsque vous vous connectez."
+        return createPortal(
+            <div>
+                {
+                   messageFail ? message.error(`${notifSendFail}`, ()=>this.props.onReset()):null
+                }
+
+                {
+                    messageSuccess ? message.success(`${notifSendSuccess}`, ()=> this.props.authLogout() ):null
+                }
+                <PageHeader
+                title="Mot de passe"
+                >
+                     <Alert type = "info" message = {description}/>
+     
+                     <div>
+                     <Form
+                     colon={false}
+                     hideRequiredMark={true}
+                     onFinish={this.onFinish}
+                     >
+                         <Form.Item
+                             name="old_password"
+                             label="Mot de passe actuel"
+                             style={{
+                                 display:"block"
+                             }}
+                             rules={[
+                                 {
+                                 required: true, 
+                                 message :"Entrer votre mot de passe actuel"
+                                 },
+     
+                             ]}
+                             >
+                                 <Input.Password/>
+     
+                             </Form.Item>
+                             <Form.Item
+                             name="new_password1"
+                             label="Nouveau mot de passe"
+                             style={{
+                                 display:"block"
+                             }}
+                             rules={[
+                                 {
+                                 required:true, 
+                                 message:"Entrer votre nouveau mot de passe"
+                                 }
+                             ]}
+                             extra={`Niveau de sécurité du mot de passe: Utilisez au moins 8 caractères. Ne choisissez pas un mot de passe que vous utilisez déjà sur un autre site, ni un mot de passe trop évident, tel que le nom de votre animal de compagnie. `}
+                             >
+                                 <Input.Password/>
+     
+                             </Form.Item>
+     
+                             <Form.Item
+                             name="new_password2"
+                             label="Confimer le nouveau mot de passe"
+                             style={{
+                                 display:"block"
+                             }}
+                             dependencies={[
+                                 'new_password1',
+     
+                             ]}
+                             rules={[
+                                 {
+                                 required:true, 
+                                 message:"Confirmer votre mot de passe"
+                                 },
+                                 ({getFieldValue}) => ({
+                                     validator(rules, value){
+                                         if(!value || getFieldValue('new_password1')===value){
+                                             return Promise.resolve()
+     
+                                         }
+     
+                                         return Promise.reject('les deux mots de passe ne sont pas identiques')
+                                     }
+                                 }),
+                             ]}
+                             >
+                                 <Input.Password/>
+     
+                             </Form.Item>
+                             
+                             <Form.Item className="submitButton">
+                                 
+                                 <Button key="submit" htmlType="submit" block>
+                                     Modifier le mot de passe
+                                 </Button>
+                             </Form.Item>
+     
+                    </Form>
+     
+                    </div>
+     
+                 </PageHeader>
+            </div>, document.body
+            
         )
     }
 }

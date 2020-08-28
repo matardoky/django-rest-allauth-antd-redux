@@ -40,7 +40,7 @@ class CustomLayout extends React.Component {
 
                     </Menu>
                 </Header>
-                <Content>
+                <Content className="content">
                     {this.props.children}
                 </Content>
                 {/* <Footer >DokyDoc</Footer> */}
