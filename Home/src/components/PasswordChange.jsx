@@ -15,7 +15,8 @@ class PasswordChange extends React.Component {
     render(){
         const { messageSuccess, messageFail, notifSendSuccess, notifSendFail} = this.props
         const description = "Choisissez un mot de passe sécurisé et ne le réutilisez pas pour d'autres comptes. Si vous modifiez ce mot de passe, vous serez déconnecté de tous vos appareils, sauf ceux que vous utilisez pour prouver votre identité lorsque vous vous connectez."
-        return createPortal(
+
+        return (
             <div>
                 {
                    messageFail ? message.error(`${notifSendFail}`, ()=>this.props.onReset()):null
@@ -113,7 +114,7 @@ class PasswordChange extends React.Component {
                     </div>
      
                  </PageHeader>
-            </div>, document.body
+            </div>
             
         )
     }
