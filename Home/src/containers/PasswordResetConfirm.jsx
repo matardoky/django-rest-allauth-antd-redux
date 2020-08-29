@@ -1,7 +1,9 @@
 import React from 'react'
 import axios from 'axios'
-import { Form, Input, Button, Paragraph, message, Row, Col} from 'antd'
+import { Form, Input, Button, Typography, message, Row, Col} from 'antd'
 import { authUrls } from '../Constants'
+
+const { Paragraph} = Typography
 
 class PasswordResetConfirm extends React.Component {
     
