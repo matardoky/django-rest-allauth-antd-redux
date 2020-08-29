@@ -8,6 +8,8 @@ import CustomLayout from './containers/CustomLayout'
 import Asider from './containers/Asider'
 import Compte from './components/Compte'
 import PasswordChange from './components/PasswordChange'
+import PasswordReset from './containers/PasswordReset'
+import PasswordResetConfirm from './containers/PasswordResetConfirm'
 
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -35,12 +37,14 @@ export const BaseRoute = () => {
     return (
         <Switch>
             <Route exact path= "/" component={LoginForm}/>
+            <Route exact path="/password-reset" component={PasswordReset} />
+            <Route exact path="/rest-auth/password/reset/confirm/:uid/:token" component={PasswordResetConfirm}/>
             <PrivateRoute>
                 <CustomLayout>
                     <Switch>
                         <PrivateRoute exact path="/dashboard" component={Dashboard}/>
                         <PrivateRoute exact path ="/compte" component={Compte}/>
-                        <PrivateRoute exact path ='/password/change' component={PasswordChange}  />
+                        <PrivateRoute exact path ="/password/change" component={PasswordChange}  />
                         <Asider>
                             <Switch>
                                 <PrivateRoute exact path="/lieu-de-consultation" component={LieuConsult}/>

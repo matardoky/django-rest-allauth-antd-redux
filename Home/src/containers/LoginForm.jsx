@@ -59,7 +59,7 @@ class LoginForm extends React.Component {
                         connectez-vous
                       </Button>
                     </Form.Item>
-                    <Link to="/">mot de passe oublié ?</Link>
+                    <Link to="/password-reset">mot de passe oublié ?</Link>
                   </Form>
                 </Col>
                 </Row>
