@@ -19,7 +19,7 @@ class UserMixins(object):
 
 
 class LieuConsultView(APIView, UserMixins):
-    permission_classes = (IsAdminUser, )
+    permission_classes = (IsAdminUser, IsAuthenticated,)
     filter_backends = (IsUserFilterBackend,)
 
     def get(self, request, *args, **kwargs):

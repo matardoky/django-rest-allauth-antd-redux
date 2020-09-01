@@ -45,11 +45,11 @@ class BasePatient(models.Model):
 
 class FichePatient(models.Model):
     base = models.ForeignKey(BasePatient, on_delete=models.CASCADE)
-    last_name = models.CharField(max_length=50)
-    first_name = models.CharField(max_length=50)
+    lastName = models.CharField(max_length=50)
+    firstName = models.CharField(max_length=50)
     email = models.EmailField()
     phone1 = models.CharField(max_length=50)
-    phone2 = models.CharField(max_length=50)
+    phone2 = models.CharField(max_length=50, blank=True, null=True)
     birthday = models.DateField()
     adresse = models.CharField(max_length=100)
     code = models.CharField(max_length=50)
