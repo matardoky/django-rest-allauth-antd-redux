@@ -11,7 +11,7 @@ class Specialite(models.Model):
     def __str__(self): 
         return self.name
 
-class LieuConsul(models.Model):
+class LieuConsult(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     region = models.CharField(max_length=50)
     deps = models.CharField(max_length=50)
@@ -23,7 +23,7 @@ class LieuConsul(models.Model):
     def __str__(self): 
         return self.name2
     
-class Contacts(models.Model):
+class Contact(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     phone = models.CharField(max_length=50)
@@ -65,7 +65,7 @@ class Ressources(models.Model):
 class Agenda(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     ressource = models.ForeignKey(Ressources, on_delete=models.CASCADE)
-    lieu = models.ForeignKey(LieuConsul, on_delete=models.CASCADE)
+    lieu = models.ForeignKey(LieuConsult, on_delete=models.CASCADE)
     base = models.ForeignKey(BasePatient, on_delete=models.CASCADE)
     specialite = models.CharField(max_length=50)
 

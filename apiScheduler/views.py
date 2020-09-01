@@ -4,48 +4,54 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework.status import HTTP_200_OK, HTTP_201_CREATED, HTTP_400_BAD_REQUEST, HTTP_204_NO_CONTENT
-
+from rest_framework import viewsets
 from .filters import IsUserFilterBackend
 
-from .serializers import LieuConsultSerializer
+from .serializers import (
+    LieuConsultSerializer, 
+    ContactSerializer,
+    HoraireSerializer, 
+    BaseSerializer, 
+    FicheSerializer, 
+    RessourceSerializer,
+    
+)
 from . import models
 
 class UserMixins(object):
-    permission_classes = (IsAdminUser, )
+    permission_classes = (IsAuthenticated,)
     filter_backends = (IsUserFilterBackend,)
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
 
-class LieuConsultView(APIView, UserMixins):
-    permission_classes = (IsAdminUser, IsAuthenticated,)
-    filter_backends = (IsUserFilterBackend,)
+class LieuConsultViewSet(UserMixins, viewsets.ModelViewSet): 
+    queryset = models.LieuConsult.objects.all()
+    serializer_class = LieuConsultSerializer
+    permission_classes = (IsAdminUser,)
 
-    def get(self, request, *args, **kwargs):
-        queryset = models.LieuConsul.objects.all()
-        serializer = LieuConsultSerializer(queryset, many=True)
-        return Response(serializer.data, status=HTTP_200_OK)
+class ContactViewSet(UserMixins, viewsets.ModelViewSet):
+    queryset = models.Contact.objects.all()
+    serializer_class = ContactSerializer
+    permission_classes = (IsAdminUser,)
 
-    def post(self, request, *args, **kwargs):
-        serializer = LieuConsultSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=HTTP_201_CREATED)
-        return Response(serializer.errors, status= HTTP_400_BAD_REQUEST)
-    
-    def put(self, pk, request, *args, **kwargs):
-        lieuConsult = models.LieuConsul.objects.get(pk=pk)
-        serializer = LieuConsultSerializer(lieuConsult, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=HTTP_200_OK)
-        return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
-        
-    def delete(self, pk, request, *args, **kwargs):
-        lieuConsult = models.LieuConsul.objects.get(pk=pk)
-        lieuConsult.delete()
-        return Response(status=HTTP_204_NO_CONTENT)
+class HoraireViewSet(UserMixins, viewsets.ModelViewSet):
+    queryset = models.Horaire.objects.all()
+    serializer_class = HoraireSerializer
+    permission_classes = (IsAdminUser,)
 
-    
+class BaseViewSet(UserMixins, viewsets.ModelViewSet): 
+    queryset = models.BasePatient.objects.all()
+    serializer_class = BaseSerializer
+    permission_classes = (IsAdminUser,)
 
+class FicheViewSet(UserMixins, viewsets.ModelViewSet): 
+    queryset = models.FichePatient.objects.all()
+    serializer_class = FicheSerializer
+    permission_classes = (IsAdminUser,)
+
+class RessourceViewSet(UserMixins, viewsets.ModelViewSet):
+    queryset = models.Ressources.objects.all()
+    serializer_class = RessourceSerializer
+    permission_classes = (IsAdminUser, )
