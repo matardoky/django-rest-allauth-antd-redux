@@ -29,7 +29,7 @@ class FicheSerializer(serializers.ModelSerializer):
     id = serializers.ReadOnlyField()
     class Meta: 
         model = models.FichePatient
-        fields = ('id', 'base', 'lastName', 'firstName', 'email', 'phone1', 'phone2', 'birthday', 'adresse', 'ville', 'remarques', 'notes')
+        fields = ('id', 'lastName', 'firstName', 'email', 'phone1', 'phone2', 'birthday', 'adresse', 'ville', 'remarques', 'notes')
 
 class RessourceSerializer(serializers.ModelSerializer):
     id = serializers.ReadOnlyField()

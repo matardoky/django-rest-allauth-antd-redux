@@ -44,6 +44,7 @@ class BasePatient(models.Model):
         return self.name
 
 class FichePatient(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     base = models.ForeignKey(BasePatient, on_delete=models.CASCADE)
     lastName = models.CharField(max_length=50)
     firstName = models.CharField(max_length=50)
