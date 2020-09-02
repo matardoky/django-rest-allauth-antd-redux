@@ -35,7 +35,6 @@ class Horaire(models.Model):
     debut = models.TimeField()
     fin = models.TimeField()
 
-
 class BasePatient(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
@@ -58,17 +57,36 @@ class FichePatient(models.Model):
     remarques = models.CharField(max_length=200)
     notes = models.CharField(max_length=200)
 
-
 class Ressources(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
 
 class Agenda(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    ressource = models.ForeignKey(Ressources, on_delete=models.CASCADE)
+    specialite = models.CharField(max_length=50)
     lieu = models.ForeignKey(LieuConsult, on_delete=models.CASCADE)
     base = models.ForeignKey(BasePatient, on_delete=models.CASCADE)
-    specialite = models.CharField(max_length=50)
+    name = models.CharField(max_length=50)
+    color = models.CharField(max_length=10, null=True, blank=True)
+    bgColor = models.CharField(max_length=10, null=True, blank=True)
+    borderColor = models.CharField(max_length=10, null=True, blank=True)
+    dragBgColor = models.CharField(max_length=10, null=True, blank=True)
 
 class MotifConsult(models.Model):
-    pass
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
+    specialite = models.CharField(max_length=50)
+    categorie = models.CharField(max_length=50)
+    agenda = models.ForeignKey(Agenda, on_delete=models.CASCADE)
+    duree = models.TimeField()
+    delaiMin = models.TimeField()
+    delaiMax = models.TimeField()
+    reservable = models.BooleanField(default=True, null=True, blank=True)
+    color = models.CharField(max_length=10, null=True, blank=True)
+    bgColor = models.CharField(max_length=10, null=True, blank=True)
+    borderColor = models.CharField(max_length=10, null=True, blank=True)
+    dragBgColor = models.CharField(max_length=10, null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+    
