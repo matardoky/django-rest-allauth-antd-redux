@@ -14,7 +14,8 @@ from .serializers import (
     BaseSerializer, 
     FicheSerializer, 
     RessourceSerializer,
-    
+    AgendaSerializer,
+    MotifConsulSerializer
 )
 from . import models
 
@@ -24,7 +25,6 @@ class UserMixins(object):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
-
 
 class LieuConsultViewSet(UserMixins, viewsets.ModelViewSet): 
     queryset = models.LieuConsult.objects.all()
@@ -54,4 +54,14 @@ class FicheViewSet(UserMixins, viewsets.ModelViewSet):
 class RessourceViewSet(UserMixins, viewsets.ModelViewSet):
     queryset = models.Ressources.objects.all()
     serializer_class = RessourceSerializer
+    permission_classes = (IsAdminUser, )
+
+class AgendaViewSet(UserMixins, viewsets.ModelViewSet):
+    queryset = models.Agenda.objects.all()
+    serializer_class = AgendaSerializer
+    permission_classes = (IsAdminUser, )
+
+class MotifConsultViewSet(UserMixins, viewsets.ModelViewSet):
+    queryset = models.MotifConsult.objects.all()
+    serializer_class = MotifConsulSerializer
     permission_classes = (IsAdminUser, )

@@ -27,12 +27,26 @@ class BaseSerializer(serializers.ModelSerializer):
 
 class FicheSerializer(serializers.ModelSerializer):
     id = serializers.ReadOnlyField()
+    base = BaseSerializer()
     class Meta: 
         model = models.FichePatient
-        fields = ('id', 'lastName', 'firstName', 'email', 'phone1', 'phone2', 'birthday', 'adresse', 'ville', 'remarques', 'notes')
+        fields = ('id', 'base', 'lastName', 'firstName', 'email', 'phone1', 'phone2', 'birthday', 'adresse', 'ville', 'remarques', 'notes')
 
 class RessourceSerializer(serializers.ModelSerializer):
     id = serializers.ReadOnlyField()
     class Meta:
         model = models.Ressources
         fields = ('id', 'name')
+
+class AgendaSerializer(serializers.ModelSerializer):
+    id = serializers.ReadOnlyField()
+    class Meta: 
+        model = models.Agenda
+        fields = ('id', 'specialite','lieu', 'base', 'name' )
+
+class MotifConsulSerializer(serializers.ModelSerializer): 
+    id = serializers.ReadOnlyField()
+    agenda = AgendaSerializer()
+    class Meta: 
+        model = models.MotifConsult
+        fields = ('id', 'name', 'specialite', 'categorie', 'agenda', 'duree', 'delaiMin', 'delaiMax', 'reservable', 'color', 'bgColor', 'borderColor', 'dragBgColor')

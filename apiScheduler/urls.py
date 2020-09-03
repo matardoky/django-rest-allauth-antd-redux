@@ -9,6 +9,8 @@ router.register('horaire', views.HoraireViewSet)
 router.register('base', views.BaseViewSet)
 router.register('fiche-patient', views.FicheViewSet)
 router.register('ressource', views.RessourceViewSet)
+router.register('agenda', views.AgendaViewSet)
+router.register('motif-de-consultation', views.MotifConsultViewSet)
 urlpatterns = [
     path('', include(router.urls)),
 ]
