@@ -27,7 +27,11 @@ class BaseSerializer(serializers.ModelSerializer):
 
 class FicheSerializer(serializers.ModelSerializer):
     id = serializers.ReadOnlyField()
-    base = BaseSerializer()
+    def get_fields(self, *args, **kwargs):
+        fields = super(FicheSerializer, self).get_fields(*args, **kwargs)
+        request = self.context['request']
+        fields['base'].queryset = fields['base'].queryset.filter(user=request.user)
+        return fields
     class Meta: 
         model = models.FichePatient
         fields = ('id', 'base', 'lastName', 'firstName', 'email', 'phone1', 'phone2', 'birthday', 'adresse', 'ville', 'remarques', 'notes')
@@ -46,7 +50,6 @@ class AgendaSerializer(serializers.ModelSerializer):
 
 class MotifConsulSerializer(serializers.ModelSerializer): 
     id = serializers.ReadOnlyField()
-    agenda = AgendaSerializer()
     class Meta: 
         model = models.MotifConsult
         fields = ('id', 'name', 'specialite', 'categorie', 'agenda', 'duree', 'delaiMin', 'delaiMax', 'reservable', 'color', 'bgColor', 'borderColor', 'dragBgColor')
