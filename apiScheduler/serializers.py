@@ -44,12 +44,24 @@ class RessourceSerializer(serializers.ModelSerializer):
 
 class AgendaSerializer(serializers.ModelSerializer):
     id = serializers.ReadOnlyField()
+
+    def get_fields(self, *args, **kwargs): 
+        fields = super(AgendaSerializer, self).get_fields(*args, **kwargs)
+        request = self.context['request']
+        fields['lieu'].queryset = fields['lieu'].queryset.filter(user=request.user)
+        fields['base'].queryset = fields['base'].queryset.filter(user=request.user)
+        return fields
     class Meta: 
         model = models.Agenda
         fields = ('id', 'specialite','lieu', 'base', 'name' )
 
 class MotifConsulSerializer(serializers.ModelSerializer): 
     id = serializers.ReadOnlyField()
+    def get_fields(self, *args, **kwargs): 
+        fields = super(MotifConsulSerializer, self).get_fields(*args, **kwargs)
+        request = self.context['request']
+        fields['agenda'].queryset = fields['agenda'].queryset.filter(user=request.user)
+        return fields
     class Meta: 
         model = models.MotifConsult
         fields = ('id', 'name', 'specialite', 'categorie', 'agenda', 'duree', 'delaiMin', 'delaiMax', 'reservable', 'color', 'bgColor', 'borderColor', 'dragBgColor')

@@ -72,6 +72,9 @@ class Agenda(models.Model):
     borderColor = models.CharField(max_length=10, null=True, blank=True)
     dragBgColor = models.CharField(max_length=10, null=True, blank=True)
 
+    def __str__(self): 
+        return self.name
+
 class MotifConsult(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
