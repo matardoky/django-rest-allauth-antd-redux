@@ -1,7 +1,8 @@
 import React from 'react' 
-import { PageHeader, Alert, Row, Col } from 'antd'
+import { PageHeader, Alert, Row, Col, Button } from 'antd'
 import ListLieuConsult from '../containers/ListLieuConsult'
 import DetailLieuConsult from '../containers/DetailLieuConsult'
+import { PlusCircleOutlined } from '@ant-design/icons'
 
 
 class LieuConsult extends React.Component {
@@ -12,6 +13,13 @@ class LieuConsult extends React.Component {
             title="Lieu de consultation"
             >
                 <Alert type="info" message ={description} />
+                <div className="ajouter-un-lieu">
+                    <Button>
+                        <PlusCircleOutlined/> AJOUTER UN LIEU
+                    </Button>
+                </div>
+
+                
                 <Row>
                     <Col span={8}>
                         <ListLieuConsult/>
