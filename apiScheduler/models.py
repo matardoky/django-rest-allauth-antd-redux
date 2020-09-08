@@ -93,3 +93,8 @@ class MotifConsult(models.Model):
     def __str__(self):
         return self.name
     
+class AgendaSharing(models.Model): 
+    pass
+
+class Invitation(models.Model): 
+    pass
