@@ -11,14 +11,29 @@ class Specialite(models.Model):
     def __str__(self): 
         return self.name
 
+class Region(models.Model):
+    name = models.CharField(max_length=50)
+    def __str__(self):
+        return self.name
+
+class Deps(models.Model):
+    name = models.CharField(max_length=50)
+    def __str__(self): 
+        return self.name
+    
+class Ville(models.Model):
+    name = models.CharField(max_length=50)
+    def __str__(self): 
+        return self.name
+
 class LieuConsult(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    region = models.CharField(max_length=50)
-    deps = models.CharField(max_length=50)
-    ville = models.CharField(max_length=50)
+    region = models.ForeignKey(Region, on_delete=models.CASCADE)
+    deps = models.ForeignKey(Deps, on_delete=models.CASCADE)
+    ville = models.ForeignKey(Ville, on_delete=models.CASCADE)
     code = models.CharField(max_length=50)
     name1 = models.CharField(max_length=50, blank=True, null=True)
-    name2 = models.CharField(max_length=50)
+    name2 = models.ForeignKey(Etablissement, on_delete=models.CASCADE)
 
     def __str__(self): 
         return self.name2
@@ -98,3 +113,4 @@ class AgendaSharing(models.Model):
 
 class Invitation(models.Model): 
     pass
+

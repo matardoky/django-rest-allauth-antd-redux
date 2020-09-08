@@ -1,4 +1,5 @@
 import React from 'react' 
+import { Link } from 'react-router-dom'
 import { PageHeader, Alert, Row, Col, Button } from 'antd'
 import ListLieuConsult from '../containers/ListLieuConsult'
 import DetailLieuConsult from '../containers/DetailLieuConsult'
@@ -14,9 +15,11 @@ class LieuConsult extends React.Component {
             >
                 <Alert type="info" message ={description} />
                 <div className="ajouter-un-lieu">
-                    <Button>
-                        <PlusCircleOutlined/> AJOUTER UN LIEU
-                    </Button>
+                    <Link to="create-lieu-consult">
+                        <Button>
+                            <PlusCircleOutlined/> AJOUTER UN LIEU
+                        </Button>
+                    </Link>
                 </div>
 
                 

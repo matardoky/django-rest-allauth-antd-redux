@@ -10,6 +10,7 @@ import Compte from './components/Compte'
 import PasswordChange from './components/PasswordChange'
 import PasswordReset from './containers/PasswordReset'
 import PasswordResetConfirm from './containers/PasswordResetConfirm'
+import CreateLieuConsult from './containers/CreateLieuConsult'
 
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -48,6 +49,7 @@ export const BaseRoute = () => {
                         <Asider>
                             <Switch>
                                 <PrivateRoute exact path="/lieu-de-consultation" component={LieuConsult}/>
+                                <PrivateRoute exact path="/create-lieu-consult" component={CreateLieuConsult}/>
                                 <PrivateRoute exact path="/users" component={Users}/>
                             </Switch>
                         </Asider>
