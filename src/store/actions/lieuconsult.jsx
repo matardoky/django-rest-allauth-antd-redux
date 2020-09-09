@@ -4,16 +4,23 @@ import LieuConsult from '../../components/LieuConsult'
 
 const { lieuConsult } = require("./actionTypes")
 
-export const lieuConsultStart = () => {
+const lieuConsultStart = () => {
     return {
         type: LieuConsult.CREATE_LIEUCONSULT_START,
     }
 }
 
-export const lieuConsultSuccess = (payload) => {
+const lieuConsultSuccess = (lieu) => {
     return {
         type: lieuConsult.CREATE_LIEUCONSULT_SUCCESS,
-        payload
+        lieu
+    }
+}
+
+const lieuConsultFail = (error) => {
+    return {
+        type:lieuConsult.CREATE_LIEUCONSULT_FAIL, 
+        error
     }
 }
 
@@ -31,7 +38,8 @@ export const createLieuConsult = (cons) => {
             dispatch(lieuConsultSuccess(payload))
         })
         .catch(err => {
- 
+            const error = err.data
+            dispatch(lieuConsultFail(error))
         })
 
     }

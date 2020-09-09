@@ -9,12 +9,14 @@ import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import { authReducer } from './store/reducers/auth';
 import { notifReducer } from './store/reducers/notifs';
+import { lieuReducer } from './store/reducers/lieuconsult';
 
 const composeEnhances = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
 const RootReducer = combineReducers({
   auth: authReducer,
   notifs: notifReducer,
+  lieu: lieuReducer
 })
 
 const store = createStore(RootReducer, composeEnhances(applyMiddleware(thunk)))
