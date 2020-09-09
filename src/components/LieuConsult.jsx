@@ -8,21 +8,18 @@ import { PlusCircleOutlined } from '@ant-design/icons'
 
 class LieuConsult extends React.Component {
     render(){
-        const description = "Renseignez er gérez toutes les informations relatives à votre lieu de consultation. Ces derniéres permettent à vos patients de vous trouver plus simplement"
+        const description = "Renseignez er gérez toutes les informations relatives à votre lieu de consultation. Ces derniéres permettent à vos patients de vous trouver plus simplement."
         return ( 
             <PageHeader
             title="Lieu de consultation"
+            extra={[
+                <Link to="create-lieu-consult" key="create-lieu-consult">
+                    <Button> <PlusCircleOutlined/> Ajouter un lieu de consultation</Button>
+                </Link>
+            ]}
             >
                 <Alert type="info" message ={description} />
-                <div className="ajouter-un-lieu">
-                    <Link to="create-lieu-consult">
-                        <Button>
-                            <PlusCircleOutlined/> AJOUTER UN LIEU
-                        </Button>
-                    </Link>
-                </div>
-
-                
+            
                 <Row>
                     <Col span={8}>
                         <ListLieuConsult/>
