@@ -15,7 +15,12 @@ from .serializers import (
     FicheSerializer, 
     RessourceSerializer,
     AgendaSerializer,
-    MotifConsulSerializer
+    MotifConsulSerializer,
+    EtablissementSerializer,
+    RegionSerializer,
+    DepsSerializer,
+    VilleSerializer,
+    SpecialiteSerializer
 )
 from . import models
 
@@ -25,6 +30,42 @@ class UserMixins(object):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+class EtablissementView(APIView): 
+    permission_classes = (IsAuthenticated,)
+    def get(self, request, *args, **kwargs):
+        queryset = models.Etablissement.objects.all()
+        serializer = EtablissementSerializer(queryset, many=True)
+        return Response(serializer.data, status=HTTP_200_OK)
+
+class SpecialiteView(APIView): 
+    permission_classes = (IsAuthenticated,)
+    def get(self, request, *args, **kwargs):
+        queryset = models.Specialite.objects.all()
+        serializer = SpecialiteSerializer(queryset, many=True)
+        return Response(serializer.data, status=HTTP_200_OK)
+
+class RegionView(APIView): 
+    permission_classes = (IsAuthenticated,)
+    def get(self, request, *args, **kwargs):
+        queryset = models.Region.objects.all()
+        serializer = RegionSerializer(queryset, many=True)
+        return Response(serializer.data, status=HTTP_200_OK)
+
+class DepsView(APIView): 
+    permission_classes = (IsAuthenticated,)
+    def get(self, request, *args, **kwargs):
+        queryset = models.Deps.objects.all()
+        serializer = DepsSerializer(queryset, many=True)
+        return Response(serializer.data, status=HTTP_200_OK)
+
+class VilleView(APIView): 
+    permission_classes = (IsAuthenticated,)
+    def get(self, request, *args, **kwargs):
+        queryset = models.Ville.objects.all()
+        serializer = VilleSerializer(queryset, many=True)
+        return Response(serializer.data, status=HTTP_200_OK)
+
 
 class LieuConsultViewSet(UserMixins, viewsets.ModelViewSet): 
     queryset = models.LieuConsult.objects.all()

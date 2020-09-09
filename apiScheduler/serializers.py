@@ -1,6 +1,31 @@
 from rest_framework import serializers, permissions
 from . import models
 
+class EtablissementSerializer(serializers.ModelSerializer):
+    class Meta: 
+        model = models.Etablissement
+        fields = ('__all__')
+
+class RegionSerializer(serializers.ModelSerializer): 
+    class Meta:
+        model = models.Region
+        fields =('__all__')
+
+class DepsSerializer(serializers.ModelSerializer):
+    class Meta: 
+        model = models.Deps
+        fields = ('__all__')
+
+class VilleSerializer(serializers.ModelSerializer): 
+    class Meta: 
+        model = models.Ville
+        fields =('__all__')
+
+class SpecialiteSerializer(serializers.ModelSerializer): 
+    class Meta: 
+        model = models.Specialite
+        fields = ('__all__')
+
 class LieuConsultSerializer(serializers.ModelSerializer):
     id = serializers.ReadOnlyField()
     class Meta:
