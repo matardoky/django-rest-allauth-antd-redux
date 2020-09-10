@@ -43,14 +43,14 @@ export const BaseRoute = () => {
             <PrivateRoute>
                 <CustomLayout>
                     <Switch>
-                        <PrivateRoute exact path="/dashboard" component={Dashboard}/>
-                        <PrivateRoute exact path ="/compte" component={Compte}/>
-                        <PrivateRoute exact path ="/password/change" component={PasswordChange}  />
                         <Asider>
                             <Switch>
-                                <PrivateRoute exact path="/lieu-de-consultation" component={LieuConsult}/>
-                                <PrivateRoute exact path="/create-lieu-consult" component={CreateLieuConsult}/>
-                                <PrivateRoute exact path="/users" component={Users}/>
+                              <PrivateRoute exact path ="/password/change" component={PasswordChange}  />
+                              <PrivateRoute exact path ="/compte" component={Compte}/>
+                              <PrivateRoute exact path="/dashboard" component={Dashboard}/>
+                              <PrivateRoute exact path="/lieu-de-consultation" component={LieuConsult}/>
+                              <PrivateRoute exact path="/create-lieu-consult" component={CreateLieuConsult}/>
+                              <PrivateRoute exact path="/users" component={Users}/>
                             </Switch>
                         </Asider>
                     </Switch>
