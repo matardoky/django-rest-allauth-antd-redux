@@ -13,9 +13,10 @@ class LieuConsult extends React.Component {
             <PageHeader
             title="Lieu de consultation"
             extra={[
-                <Link to="create-lieu-consult" key="create-lieu-consult">
-                    <Button> <PlusCircleOutlined/> Ajouter un lieu de consultation</Button>
-                </Link>
+                <Link to="create-lieu-consult" key="1">
+                    <Button> Ajouter un lieu de consultation<PlusCircleOutlined/></Button>
+                </Link>,
+                
             ]}
             >
                 <Alert type="info" message ={description} />
