@@ -34,7 +34,7 @@ class ContactForm extends React.Component {
 
                             </Col>
 
-                            <Col span={12} >
+                            <Col span={12}>
                                 <Form.Item
                                 label="Département"
                                 name="deps"
