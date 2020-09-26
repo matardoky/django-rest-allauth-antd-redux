@@ -40,12 +40,14 @@ class LieuConsult(models.Model):
     
 class Contact(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    lieu = models.ForeignKey(LieuConsult, on_delete=models.CASCADE, related_name='contacts', blank=True, null=True)
     name = models.CharField(max_length=50)
     phone = models.CharField(max_length=50)
     fax = models.CharField(max_length=50, blank=True, null=True)
 
 class Horaire(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    lieu = models.ForeignKey(LieuConsult, on_delete=models.CASCADE, related_name='horaires', blank=True, null=True)
     jour = models.CharField(max_length=50)
     debut = models.TimeField()
     fin = models.TimeField()
