@@ -66,7 +66,6 @@ class VilleView(APIView):
         serializer = VilleSerializer(queryset, many=True)
         return Response(serializer.data, status=HTTP_200_OK)
 
-
 class LieuConsultViewSet(UserMixins, viewsets.ModelViewSet): 
     queryset = models.LieuConsult.objects.all()
     serializer_class = LieuConsultSerializer

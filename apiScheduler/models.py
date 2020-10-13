@@ -45,9 +45,14 @@ class Contact(models.Model):
     phone = models.CharField(max_length=50)
     fax = models.CharField(max_length=50, blank=True, null=True)
 
+class PlageHoraire(models.Model):
+    start = models.TimeField()
+    end = models.TimeField()
+
 class Horaire(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     lieu = models.ForeignKey(LieuConsult, on_delete=models.CASCADE, related_name='horaires', blank=True, null=True)
+    plage_horaire = models.ForeignKey(PlageHoraire, on_delete=models.CASCADE, related_name='plagesHoraire', blank=True, null=True)
     jour = models.CharField(max_length=50)
     debut = models.TimeField()
     fin = models.TimeField()

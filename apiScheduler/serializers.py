@@ -26,11 +26,6 @@ class SpecialiteSerializer(serializers.ModelSerializer):
         model = models.Specialite
         fields = ('__all__')
 
-class LieuConsultSerializer(serializers.ModelSerializer):
-    id = serializers.ReadOnlyField()
-    class Meta:
-        model = models.LieuConsult
-        fields = ('id', 'region', 'deps', 'ville', 'code',  'name1', 'name2')
 
 class ContactSerializer(serializers.ModelSerializer): 
     id = serializers.ReadOnlyField()
@@ -43,6 +38,12 @@ class HoraireSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Horaire
         fields = ('id', 'jour', 'debut', 'fin')
+
+class LieuConsultSerializer(serializers.ModelSerializer):
+    id = serializers.ReadOnlyField()
+    class Meta:
+        model = models.LieuConsult
+        fields = ('id', 'region', 'deps', 'ville', 'code',  'name1', 'name2')
 
 class BaseSerializer(serializers.ModelSerializer):
     id = serializers.ReadOnlyField()

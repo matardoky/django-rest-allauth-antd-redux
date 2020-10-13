@@ -9,3 +9,13 @@ export const authUrls = {
     USER_ACTIVATION: `${ROOT_URL}rest-auth/registration/verify-email/`,
     USER_PROFILE: `${ROOT_URL}rest-auth/user/`
 }
+
+export const lieuUrls = {
+    REGION:`${ROOT_URL}apiScheduler/regions/`,
+    DEPS:`${ROOT_URL}apiScheduler/departements/`,
+    VILLE:`${ROOT_URL}apiScheduler/villes/`,
+    ETABLISSEMENT:`${ROOT_URL}apiScheduler/etablissements/`,
+    SPECIALITE:`${ROOT_URL}apiScheduler/specialites/`,
+    CREATE_LIEUCONSULT:`${ROOT_URL}apiScheduler/lieu-consult/`,
+    DELETE_LIEUCONSULT:`${ROOT_URL}apiScheduler/lieu-consult/id`,
+}
