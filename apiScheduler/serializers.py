@@ -35,9 +35,14 @@ class ContactSerializer(serializers.ModelSerializer):
 
 class HoraireSerializer(serializers.ModelSerializer):
     id = serializers.ReadOnlyField()
+    
+    def __init__(self, *args, **kwargs):
+        many = kwargs.pop('many', True)
+        super(HoraireSerializer, self).__init__(many=many, *args, **kwargs)
+        
     class Meta:
         model = models.Horaire
-        fields = ('id', 'jour', 'debut', 'fin')
+        fields = ('id', 'day', 'start', 'end')
 
 class LieuConsultSerializer(serializers.ModelSerializer):
     id = serializers.ReadOnlyField()
