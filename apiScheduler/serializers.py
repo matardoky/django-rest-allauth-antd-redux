@@ -31,7 +31,7 @@ class ContactSerializer(serializers.ModelSerializer):
     id = serializers.ReadOnlyField()
     class Meta: 
         model = models.Contact
-        fields =('id', 'name', 'phone', 'fax')
+        fields =('id','url', 'name', 'phone', 'fax')
 
 class HoraireSerializer(serializers.ModelSerializer):
     id = serializers.ReadOnlyField()
@@ -42,22 +42,27 @@ class HoraireSerializer(serializers.ModelSerializer):
         
     class Meta:
         model = models.Horaire
-        fields = ('id', 'day', 'start', 'end')
+        fields = ('id', 'url', 'day', 'start', 'end')
 
 class LieuConsultSerializer(serializers.ModelSerializer):
     id = serializers.ReadOnlyField()
-    region = RegionSerializer()
-    deps = DepsSerializer()
-    ville = VilleSerializer()
     class Meta:
         model = models.LieuConsult
-        fields = ('id', 'region', 'deps', 'ville', 'code',  'name1', 'name2')
+        fields = ('id', 'url', 'region', 'deps', 'ville', 'rue', 'code',  'name1', 'name2')
+    
+    def to_representation(self, instance): 
+        context = super(LieuConsultSerializer, self).to_representation(instance)
+        context['region'] = instance.region.name
+        context['deps'] = instance.deps.name
+        context['ville'] = instance.ville.name
+        context['name2'] = instance.name2.name
+        return context
 
 class BaseSerializer(serializers.ModelSerializer):
     id = serializers.ReadOnlyField()
     class Meta: 
         model = models.BasePatient
-        fields = ('id', 'name')
+        fields = ('id', 'url', 'name')
 
 class FicheSerializer(serializers.ModelSerializer):
     id = serializers.ReadOnlyField()
@@ -68,7 +73,7 @@ class FicheSerializer(serializers.ModelSerializer):
         return fields
     class Meta: 
         model = models.FichePatient
-        fields = ('id', 'base', 'lastName', 'firstName', 'email', 'phone1', 'phone2', 'birthday', 'adresse', 'ville', 'remarques', 'notes')
+        fields = ('id', 'url', 'base', 'lastName', 'firstName', 'email', 'phone1', 'phone2', 'birthday', 'adresse', 'ville', 'remarques', 'notes')
 
 class RessourceSerializer(serializers.ModelSerializer):
     id = serializers.ReadOnlyField()
