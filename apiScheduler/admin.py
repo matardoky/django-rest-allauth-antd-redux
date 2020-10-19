@@ -4,7 +4,8 @@ from .models import (
     Specialite, 
     Region,
     Deps, 
-    Ville
+    Ville, 
+    LieuConsult
 )
 # Register your models here.
 
@@ -14,3 +15,4 @@ admin.site.register(Specialite)
 admin.site.register(Region)
 admin.site.register(Deps)
 admin.site.register(Ville)
+admin.site.register(LieuConsult)

@@ -28,15 +28,15 @@ class Ville(models.Model):
 
 class LieuConsult(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    region = models.ForeignKey(Region, on_delete=models.CASCADE)
-    deps = models.ForeignKey(Deps, on_delete=models.CASCADE)
-    ville = models.ForeignKey(Ville, on_delete=models.CASCADE)
+    region = models.ForeignKey(Region, on_delete=models.CASCADE, related_name='regions')
+    deps = models.ForeignKey(Deps, on_delete=models.CASCADE, related_name='depss')
+    ville = models.ForeignKey(Ville, on_delete=models.CASCADE, related_name='villes')
     code = models.CharField(max_length=50)
     name1 = models.CharField(max_length=50, blank=True, null=True)
-    name2 = models.ForeignKey(Etablissement, on_delete=models.CASCADE)
+    name2 = models.ForeignKey(Etablissement, on_delete=models.CASCADE, related_name='etablissements')
 
-    def __str__(self): 
-        return self.name2
+    def __str__(self):
+        return self.name2.name
     
 class Contact(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -45,17 +45,12 @@ class Contact(models.Model):
     phone = models.CharField(max_length=50)
     fax = models.CharField(max_length=50, blank=True, null=True)
 
-class PlageHoraire(models.Model):
-    start = models.TimeField()
-    end = models.TimeField()
-
 class Horaire(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     lieu = models.ForeignKey(LieuConsult, on_delete=models.CASCADE, related_name='horaires', blank=True, null=True)
-    plage_horaire = models.ForeignKey(PlageHoraire, on_delete=models.CASCADE, related_name='plagesHoraire', blank=True, null=True)
-    jour = models.CharField(max_length=50)
-    debut = models.TimeField()
-    fin = models.TimeField()
+    day = models.CharField(max_length=50)
+    start = models.TimeField()
+    end = models.TimeField()
 
 class BasePatient(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
