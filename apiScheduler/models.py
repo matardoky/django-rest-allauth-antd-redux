@@ -31,6 +31,7 @@ class LieuConsult(models.Model):
     region = models.ForeignKey(Region, on_delete=models.CASCADE, related_name='regions')
     deps = models.ForeignKey(Deps, on_delete=models.CASCADE, related_name='depss')
     ville = models.ForeignKey(Ville, on_delete=models.CASCADE, related_name='villes')
+    rue = models.CharField(max_length=50, blank=True, null=True)
     code = models.CharField(max_length=50)
     name1 = models.CharField(max_length=50, blank=True, null=True)
     name2 = models.ForeignKey(Etablissement, on_delete=models.CASCADE, related_name='etablissements')

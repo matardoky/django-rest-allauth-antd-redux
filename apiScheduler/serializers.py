@@ -46,6 +46,9 @@ class HoraireSerializer(serializers.ModelSerializer):
 
 class LieuConsultSerializer(serializers.ModelSerializer):
     id = serializers.ReadOnlyField()
+    region = RegionSerializer()
+    deps = DepsSerializer()
+    ville = VilleSerializer()
     class Meta:
         model = models.LieuConsult
         fields = ('id', 'region', 'deps', 'ville', 'code',  'name1', 'name2')
