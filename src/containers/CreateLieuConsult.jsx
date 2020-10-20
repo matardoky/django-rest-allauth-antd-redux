@@ -1,18 +1,27 @@
 import React from 'react'
 import LocalisationForm from './LocalisationForm'
-import { Divider } from 'antd'
 import ContactForm from './ContactForm'
 import HoraireForm from './HoraireForm'
+
+import {Form} from 'antd'
+
 
 class CreateLieuConsult extends React.Component {
     render(){
         return(
             <>
-            <LocalisationForm/>
-            <Divider/>
-            <ContactForm/>
-            <Divider/>
-            <HoraireForm/>
+                <Form
+                colon={false}
+                hideRequiredMark={true}
+                >   
+                <LocalisationForm/>
+
+                <HoraireForm/>
+
+                <ContactForm/>
+                </Form>
+
+    
             </>
         )
     }
