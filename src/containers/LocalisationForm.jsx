@@ -1,7 +1,10 @@
 import React from 'react'
-import { Row, Col, Input, Form, Card } from 'antd'
+import { Row, Col, Input, Form, Card, Select} from 'antd'
 
-export default function LocalisationForm(props){
+const { Option } = Select
+export default function LocalisationForm({data}){
+    const regions = data.map(el => <Option key={el.id}> {el.name}</Option>)
+        
     return (
         <Card title="Localisation" bordered >
             <Row gutter={32}>
@@ -19,7 +22,9 @@ export default function LocalisationForm(props){
                         display:"block"
                     }}
                     >
-                        <Input placeholder="ex:Dakar"/>
+                        <Select>
+                            {regions}
+                        </Select>
             
                     </Form.Item>
             
