@@ -58,33 +58,12 @@ class VilleView(APIView):
         queryset = models.Ville.objects.all()
         serializer = VilleSerializer(queryset, many=True)
         return Response(serializer.data, status=HTTP_200_OK)
-        
+
 class SpecialiteView(APIView): 
     permission_classes = (IsAuthenticated,)
     def get(self, request, *args, **kwargs):
         queryset = models.Specialite.objects.all()
         serializer = SpecialiteSerializer(queryset, many=True)
-        return Response(serializer.data, status=HTTP_200_OK)
-
-class RegionView(APIView): 
-    permission_classes = (IsAuthenticated,)
-    def get(self, request, *args, **kwargs):
-        queryset = models.Region.objects.all()
-        serializer = RegionSerializer(queryset, many=True)
-        return Response(serializer.data, status=HTTP_200_OK)
-
-class DepsView(APIView): 
-    permission_classes = (IsAuthenticated,)
-    def get(self, request, *args, **kwargs):
-        queryset = models.Deps.objects.all()
-        serializer = DepsSerializer(queryset, many=True)
-        return Response(serializer.data, status=HTTP_200_OK)
-
-class VilleView(APIView): 
-    permission_classes = (IsAuthenticated,)
-    def get(self, request, *args, **kwargs):
-        queryset = models.Ville.objects.all()
-        serializer = VilleSerializer(queryset, many=True)
         return Response(serializer.data, status=HTTP_200_OK)
 
 class LieuConsultViewSet(UserMixins, viewsets.ModelViewSet): 
