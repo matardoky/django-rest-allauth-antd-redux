@@ -1,7 +1,9 @@
 import React from 'react'
 import { Row, Col, Input, Form, Card } from 'antd'
+import dayjs from 'dayjs'
 
 export default function HoraireForm(props){
+    console.log(dayjs().format())
     return(
         <Card title="Heures d'ouverture" bordered >
             <Row gutter={32}>
