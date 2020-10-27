@@ -12,9 +12,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+    'django.contrib.gis',
     'users.apps.UsersConfig',
-    'apiScheduler.apps.ApischedulerConfig',
+    'api.apps.ApiConfig',
     'django.contrib.sites',
     'allauth',
     'allauth.account',
@@ -65,8 +65,12 @@ WSGI_APPLICATION = 'doc2day.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME':'doc2day',
+        'USER':'postgres',
+        'PASSWORD':'root',
+        'HOST':'localhost',
+        'PORT':'5432'
     }
 }
 
