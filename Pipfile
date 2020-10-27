@@ -6,15 +6,15 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-djangorestframework = "==3.11.1"
-django-rest-auth = "==0.9.5"
-django-allauth = "==0.42.0"
-django-cors-headers = "==3.5.0"
-django-filter = "==2.3.0"
 asgiref = "==3.2.10"
 certifi = "==2020.6.20"
 chardet = "==3.0.4"
 defusedxml = "==0.6.0"
+django-allauth = "==0.42.0"
+django-cors-headers = "==3.5.0"
+django-filter = "==2.3.0"
+django-rest-auth = "==0.9.5"
+djangorestframework = "==3.11.1"
 idna = "==2.10"
 oauthlib = "==3.1.0"
 python3-openid = "==3.2.0"
@@ -27,4 +27,4 @@ urllib3 = "==1.25.10"
 Django = "==3.1.1"
 
 [requires]
-python_version = "3.6"
+python_version = "3.8"
