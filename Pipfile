@@ -50,6 +50,7 @@ webencodings = "==0.5.1"
 CacheControl = "==0.12.6"
 PyJWT = "==1.7.1"
 psycopg2-binary = "*"
+geocoder = "*"
 
 [requires]
 python_version = "3.8"
