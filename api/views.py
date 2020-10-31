@@ -1,17 +1,24 @@
 from django.shortcuts import render
 from rest_framework.generics import ListCreateAPIView
-from .models import Location
-from .serializers import LocationSerializer
+from rest_framework import viewsets
+from api.models import Location
+from api.serializers import LocationSerializer
 import geocoder 
-class LocationView(ListCreateAPIView):
+
+
+class LocationView(viewsets.ModelViewSet):
     queryset = Location.objects.all()
     serializer_class = LocationSerializer
 
     def perform_create(self, serializer): 
-        adress = serializer.initial_data['adress']
-        g = geocoder.google(adress)
-        latitude = g.latlng[0]
-        longitude = g.latlng[1]
-        point = 'Point('+str(longitude) + ' ' + str(latitude) + ')'
+        address = serializer.initial_data['address']
+        g = geocoder.osm(address)
+        longitude = g.x
+        latitude = g.y
+        point = 'POINT(' + str(longitude) + ' ' + str(latitude) + ')'
         serializer.save(location=point)
+
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            super(Location, self).save(*args, **kwargs)
 
