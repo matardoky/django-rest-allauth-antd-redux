@@ -38,3 +38,5 @@ class Agenda(models.Model):
         return self.name
 
 
+
+

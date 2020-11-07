@@ -1,14 +1,25 @@
 from django.shortcuts import render
-from rest_framework.generics import ListCreateAPIView
 from rest_framework import viewsets
-from api.models import Location
-from api.serializers import LocationSerializer
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from api.models import Location, Agenda, Specialite, Base
+from .filters import IsUserFilterBackend
+from api.serializers import (
+LocationSerializer, BaseSerializer, AgendaSerializer, SpecialiteSerializer,
+)
 import geocoder 
 
+class UserMixins(object):
+    permission_classes = (IsAuthenticated,)
+    filter_backends = (IsUserFilterBackend,)
 
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+    
 class LocationView(viewsets.ModelViewSet):
     queryset = Location.objects.all()
     serializer_class = LocationSerializer
+    permission_classes = (IsAuthenticated,)
+    filter_backends = (IsUserFilterBackend,)
 
     def perform_create(self, serializer): 
         address = serializer.initial_data['address']
@@ -16,9 +27,16 @@ class LocationView(viewsets.ModelViewSet):
         longitude = g.x
         latitude = g.y
         point = 'POINT(' + str(longitude) + ' ' + str(latitude) + ')'
-        serializer.save(location=point)
+        serializer.save(location=point, user=self.request.user)
 
-    def save(self, *args, **kwargs):
-        if not self.pk:
-            super(Location, self).save(*args, **kwargs)
+class SpecialiteView(viewsets.ModelViewSet):
+    queryset = Specialite.objects.all()
+    serializer_class = SpecialiteSerializer
 
+class BaseView(UserMixins, viewsets.ModelViewSet):
+    queryset = Base.objects.all()
+    serializer_class = BaseSerializer
+
+class AgendaView(UserMixins, viewsets.ModelViewSet):
+    queryset = Agenda.objects.all()    
+    serializer_class = AgendaSerializer
