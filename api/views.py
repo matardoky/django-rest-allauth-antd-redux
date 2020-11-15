@@ -11,10 +11,6 @@ from users.serializers import CustomRegisterSerializer, UserSerializer
 import geocoder 
 from rest_auth.registration.views import RegisterView
 
-class RegisterView(RegisterView):
-    permission_classes = (IsAdminUser,)
-    serializer_class = CustomRegisterSerializer
-    
 class OwnerView(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
