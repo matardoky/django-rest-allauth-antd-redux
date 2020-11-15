@@ -6,7 +6,19 @@ from .filters import IsUserFilterBackend
 from api.serializers import (
 LocationSerializer, BaseSerializer, AgendaSerializer, SpecialiteSerializer,
 )
+from users.models import User
+from users.serializers import CustomRegisterSerializer, UserSerializer
 import geocoder 
+from rest_auth.registration.views import RegisterView
+
+class RegisterView(RegisterView):
+    permission_classes = (IsAdminUser,)
+    serializer_class = CustomRegisterSerializer
+    
+class OwnerView(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = (IsAdminUser,)
 
 class UserMixins(object):
     permission_classes = (IsAuthenticated,)
