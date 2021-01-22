@@ -1,7 +1,6 @@
 from rest_framework import serializers
 from api.models import Location, Base, Agenda, Specialite
 
-
 class StringSerializer(serializers.StringRelatedField):
     def to_internal_value(self, value):
         return value
